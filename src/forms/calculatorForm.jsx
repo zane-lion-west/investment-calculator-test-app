@@ -1,57 +1,52 @@
-import s from './calculatorForm.module.scss';
-import buttons from '../components/buttons/Buttons';
+import s from './CalculatorForm.module.scss';
+import Inputs from '../components/inputs/Inputs';
+import { useState } from 'react';
 
 
 /**
- * @typedef calculatorFormProps
+ * @typedef CalculatorFormProps
  * 
- * @param {calculatorFormProps} props
+ * @param {CalculatorFormProps} props
  * @returns {JSX.Element}
  */
-const calculatorForm = ({}) => {
+const CalculatorForm = ({}) => {
+
+  const [enteredSavings, setEnteredSavings] = useState('');
+  const [enteredContribution, setEnteredContribution] = useState('');
+  const [enteredReturn, setEnteredReturn] = useState('');
+  const [enteredDuration, setEnteredDuration] = useState('');
+  
+  const onResetHandler = () => {};
+  const onSubmitHandler = () => {};
+
   return (
     <div className={s.wrapper}>
-       <form className="form">
-        <div className="input-group">
-          <p>
-            <label htmlFor="current-savings">Current Savings ($)</label>
-            <input type="number" id="current-savings" />
-          </p>
-          <p>
-            <label htmlFor="yearly-contribution">Yearly Savings ($)</label>
-            <input type="number" id="yearly-contribution" />
-          </p>
-        </div>
-        <div className="input-group">
-          <p>
-            <label htmlFor="expected-return">
-              Expected Interest (%, per year)
-            </label>
-            <input type="number" id="expected-return" />
-          </p>
-          <p>
-            <label htmlFor="duration">Investment Duration (years)</label>
-            <input type="number" id="duration" />
-          </p>
-        </div>
-        <p className="actions">
+       <form className={s.form}>
+        <div className={s.input_group}>
 
-          <button type="reset" className="buttonAlt">
+          <Inputs htmlForLabel="current-savings" inputLabel="Current Savings ($)" inputType="number" inputId="current-savings"/>
+          <Inputs htmlForLabel="yearly-contribution" inputLabel="Yearly Savings ($)" inputType="number" inputId="yearly-contribution" />
+ 
+        </div>
+        <div className={s.input_group}>
+ 
+          <Inputs htmlForLabel="expected-return" inputLabel="Expected Interest (%, per year)" inputType="number" inputId="expected-return" />
+          <Inputs htmlForLabel="duration" inputLabel="Investment Duration (years)" inputType="number" inputId="duration" />
+          
+        </div>
+        <p className={s.actions}>
+
+          <button type="reset" className={s.buttonAlt} onClick={onResetHandler}>
             Reset
           </button>
-
-          <Buttons>Reset</Buttons>
-          <Buttons>Calculate</Buttons>
-        
-          <button type="submit" className="button">
+          <button type="submit" className={s.button} onClick={onSubmitHandler}>
             Calculate
           </button>
-        
-        
+
         </p>
       </form>
     </div>
   );
 };
 
-export default calculatorForm;
+export default CalculatorForm;
